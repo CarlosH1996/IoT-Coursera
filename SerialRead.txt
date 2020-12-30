@@ -1,0 +1,28 @@
+int commandByte = 0;
+
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW); 
+  Serial.begin(9600);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+    int byteA = Serial.available();
+    char bVal = Serial.read();
+    Serial.println(commandByte);
+    delay(100);
+    if(Serial.available() > 0){
+        commandByte = Serial.read();
+  
+        if (commandByte == '1'){
+          digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+          delay(100);                       // wait for a second
+        }
+        else {
+          digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+          delay(100);                       // wait for a second
+        }
+    }
+}
